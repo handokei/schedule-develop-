@@ -2,10 +2,17 @@ package com.example.schedule.service;
 
 
 import com.example.schedule.dto.SignUpResponseDto;
+import com.example.schedule.dto.UserListResponseDto;
+import com.example.schedule.dto.UserResponseDto;
 import com.example.schedule.entity.User;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import com.example.schedule.repository.UserRepository;
+import org.springframework.web.server.ResponseStatusException;
+
+import java.util.List;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -19,5 +26,21 @@ public class UserService {
         return new SignUpResponseDto(savedUser.getUserId(),savedUser.getUserName(),savedUser.getUserEmail());
     }
 
+    public UserResponseDto findById(Long userId) {
+        Optional<User> optionalUser = userRepository.findById(userId);
 
+        //NPE방지
+        if (optionalUser.isEmpty()) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+        }
+            User findUser = optionalUser.get();
+
+            return new UserResponseDto(findUser.getUserName(), findUser.getUserEmail());
+
+    }
+
+
+    public List<UserListResponseDto> findAll() {
+        return userRepository.findAll().stream().map(UserListResponseDto::listDto).toList();
+    }
 }
