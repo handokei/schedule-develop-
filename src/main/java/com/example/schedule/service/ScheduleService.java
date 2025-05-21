@@ -39,4 +39,10 @@ public class ScheduleService {
 
         return new ScheduleResponseDto(findSchedule.getPlanId(), findSchedule.getPlanTitle(), findSchedule.getPlanContents());
     }
+
+    public void delete(Long userId) {
+        Schedule findWriter = scheduleRepository.findByIdOrElseThrow(userId);
+
+        scheduleRepository.delete(findWriter);
+    }
 }

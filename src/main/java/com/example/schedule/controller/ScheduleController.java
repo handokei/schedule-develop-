@@ -45,4 +45,12 @@ public class ScheduleController {
 
        return new ResponseEntity<>(scheduleResponseDto,HttpStatus.OK);
     }
+
+    //삭제
+    @DeleteMapping("/{userId}")
+    public ResponseEntity<Void> delete(@PathVariable Long userId) {
+       scheduleService.delete(userId);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
 }
