@@ -3,6 +3,7 @@ package com.example.schedule.controller;
 
 import com.example.schedule.dto.SignUpRequestDto;
 import com.example.schedule.dto.SignUpResponseDto;
+import com.example.schedule.dto.UserResponseDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -25,5 +26,12 @@ public class UserController {
         return new ResponseEntity<>(signUpResponseDto, HttpStatus.CREATED);
     }
 
+    //단건 조회
+    @GetMapping("/{userId}")
+    public ResponseEntity<UserResponseDto> findById(@PathVariable Long userId) {
+        UserResponseDto userResponseDto = userService.findById(userId);
+
+        return new ResponseEntity<>(userResponseDto,HttpStatus.OK);
+    }
 
 }
