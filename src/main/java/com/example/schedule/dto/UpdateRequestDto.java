@@ -6,13 +6,12 @@ import lombok.Getter;
 @Getter
 public class UpdateRequestDto {
 
-
-    private final String oldPasswqrd;
+    private final String oldPassword;
 
     private final String newPassword;
 
-    public UpdateRequestDto(String oldPasswqrd, String newPassword) {
-        this.oldPasswqrd = oldPasswqrd;
+    public UpdateRequestDto(String oldPassword, String newPassword) {
+        this.oldPassword = oldPassword;
         this.newPassword = newPassword;
     }
 

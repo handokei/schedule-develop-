@@ -46,14 +46,21 @@ public class UserService {
     }
 
     @Transactional
-    public void updateUser(Long userId, String oldPassword, String newPassword) {
+    public void updatePassword(Long userId, String oldPassword, String newPassword) {
        User findUser = userRepository.findByIdOrElseThrow(userId);
 
         if (!findUser.getPassword().equals(oldPassword)) {
             throw new ResponseStatusException(HttpStatus.UNAUTHORIZED,"비밀번호가 일치하지 않습니다.");
         }
 
-        findUser.updateUser(newPassword);
+        findUser.updatePassword(newPassword);
 
+    }
+
+    public void deleteUser(Long userId) {
+
+        User findUser = userRepository.findByIdOrElseThrow(userId);
+
+        userRepository.delete(findUser);
     }
 }

@@ -44,14 +44,21 @@ public class UserController {
 
     //수정
     @PutMapping("/{userId}")
-    public ResponseEntity<Void> updateUser(
+    public ResponseEntity<Void> updatePassword(
             @PathVariable Long userId,
             @RequestBody UpdateRequestDto dto
             ) {
-        userService.updateUser(userId,
-                dto.getOldPasswqrd(),dto.getNewPassword());
+        userService.updatePassword(userId,
+                dto.getOldPassword(),dto.getNewPassword());
 
         return new ResponseEntity<>(HttpStatus.OK);
+    }
+    //삭제
+    @DeleteMapping("/{userId}")
+    public ResponseEntity<Void> deleteUser(@PathVariable Long userId) {
+        userService.deleteUser(userId);
+
+        return  new ResponseEntity<>(HttpStatus.OK);
     }
 
 }
