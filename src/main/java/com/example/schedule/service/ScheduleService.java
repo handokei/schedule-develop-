@@ -1,12 +1,12 @@
-package service;
+package com.example.schedule.service;
 
 
-import dto.ScheduleResponseDto;
-import entity.Schedule;
+import com.example.schedule.dto.ScheduleResponseDto;
+import com.example.schedule.entity.Schedule;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-import repository.ScheduleRepository;
-import repository.UserRepository;
+import com.example.schedule.repository.ScheduleRepository;
+import com.example.schedule.repository.UserRepository;
 
 @Service
 @RequiredArgsConstructor

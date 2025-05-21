@@ -1,10 +1,7 @@
-package entity;
+package com.example.schedule.entity;
 
 import jakarta.persistence.*;
 import lombok.Getter;
-
-import java.time.LocalDateTime;
-
 
 @Getter
 @Entity
@@ -20,16 +17,18 @@ public class User extends BaseEntity{
 
     @Column(nullable = false)
     private String password;
+
     @Column(nullable = false)
     private String userEmail;
 
 
     public User (
-            String userName,String userEmail,
-            String password) {
+            String userName,String password,
+            String userEmail)
+             {
         this.userName = userName;
-        this.userEmail = userEmail;
         this.password = password;
+        this.userEmail = userEmail;
 
     }
 

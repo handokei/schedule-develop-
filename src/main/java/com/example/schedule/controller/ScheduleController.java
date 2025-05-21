@@ -1,19 +1,17 @@
-package controller;
+package com.example.schedule.controller;
 
 
-import dto.ScheduleRequestDto;
-import dto.ScheduleResponseDto;
-import entity.Schedule;
+import com.example.schedule.dto.ScheduleRequestDto;
+import com.example.schedule.dto.ScheduleResponseDto;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import service.ScheduleService;
+import com.example.schedule.service.ScheduleService;
 
 @Slf4j
 @RestController
