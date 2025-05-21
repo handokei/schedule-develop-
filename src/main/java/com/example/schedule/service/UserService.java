@@ -63,4 +63,9 @@ public class UserService {
 
         userRepository.delete(findUser);
     }
+
+    public void login(String userEmail,String password) {
+        User user = userRepository.findUserByUserNameOrElseThrow(userEmail);
+
+    }
 }

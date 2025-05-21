@@ -14,7 +14,7 @@ import java.io.IOException;
 @Slf4j
 public class LoginFilter implements Filter {
 
-    private static final String[] WHITE_LIST = {"/user/login","/user/signup","/logout","/"};
+    private static final String[] WHITE_LIST = {"/users/signup","/users/login","/logout"};
 
     @Override
     public void doFilter(

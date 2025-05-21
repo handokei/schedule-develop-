@@ -1,7 +1,11 @@
 package com.example.schedule.controller;
 
 
+import com.example.schedule.commom.Const;
 import com.example.schedule.dto.*;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpSession;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -17,14 +21,42 @@ public class UserController {
 
     private final UserService userService;
 
-    //유저 생성
+
+    //회원가입
     @PostMapping("/signup")
-    public ResponseEntity<SignUpResponseDto> signUp(@RequestBody SignUpRequestDto requestDto) {
+    public ResponseEntity<SignUpResponseDto> createLogin(
+            @Valid
+            @RequestBody SignUpRequestDto dto,
+            HttpServletRequest request
+    ) {
+        SignUpResponseDto responseDto = userService.signUp(dto.getUserName(), dto.getPassword(), dto.getUserEmail());
 
-        SignUpResponseDto signUpResponseDto = userService.signUp(requestDto.getUserName(), requestDto.getPassword(), requestDto.getUserEmail());
+        return new ResponseEntity<>(responseDto,HttpStatus.CREATED);
 
-        return new ResponseEntity<>(signUpResponseDto, HttpStatus.CREATED);
     }
+
+
+    //로그인
+//    @PostMapping("/login")
+//    public ResponseEntity<Void> userLogin(
+//            @Valid
+//            @RequestBody LoginRequestDto dto
+//    ) {
+//        Long userId = responseDto.getUserId();
+//
+//       // 실패 시 예외처리
+//        if (userId == null) {
+//            return "/users";
+//        }
+//
+//        HttpSession session = request.getSession();
+//
+//        //회원 정보 조회
+//        UserResponseDto loginUser = userService.findById(userId);
+//
+//        //회원 정보 저장
+//        session.setAttribute(Const.LOGIN_USER,loginUser);
+//    }
 
     //전체조회
     @GetMapping
