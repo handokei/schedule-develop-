@@ -3,7 +3,7 @@ package com.example.schedule.dto;
 import lombok.Getter;
 
 @Getter
-public class ScheduleRequestDto {
+public class CreateScheduleRequestDto {
 
     private final String planTitle;
 
@@ -11,7 +11,7 @@ public class ScheduleRequestDto {
 
     private final String userName;
 
-    public ScheduleRequestDto(String planTitle, String planContents, String userName) {
+    public CreateScheduleRequestDto(String planTitle, String planContents, String userName) {
         this.planTitle = planTitle;
         this.planContents = planContents;
         this.userName = userName;

@@ -20,18 +20,19 @@ public class Schedule extends BaseEntity {
     private String planContents;
 
     @ManyToOne
-    @JoinColumn(name = "userId")
+    @JoinColumn(name = "user_id")
     private User user;
+
+    public Schedule() {
+
+    }
 
     public  Schedule(String planTitle, String planContents){
         this.planTitle = planTitle;
         this.planContents = planContents;
     }
 
-    //JPA가 이용
-    public void Schedule() {}
-
-    public void newUser(User user){
+    public void setnewUser(User user){
         this.user = user;
     }
 
