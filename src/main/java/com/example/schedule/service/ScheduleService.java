@@ -9,6 +9,8 @@ import org.springframework.stereotype.Service;
 import com.example.schedule.repository.ScheduleRepository;
 import com.example.schedule.repository.UserRepository;
 
+import java.util.List;
+
 @Service
 @RequiredArgsConstructor
 public class ScheduleService {
@@ -26,4 +28,8 @@ public class ScheduleService {
         return new ScheduleResponseDto(schedule.getPlanId(),schedule.getPlanTitle(),schedule.getPlanContents());
     }
 
+    public List<ScheduleResponseDto> findAll() {
+
+        return scheduleRepository.findAll().stream().map(ScheduleResponseDto::toDto).toList();
+    }
 }

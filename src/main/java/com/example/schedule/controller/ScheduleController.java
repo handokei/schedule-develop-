@@ -10,6 +10,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import com.example.schedule.service.ScheduleService;
 
+import java.util.List;
+
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/schedules")
@@ -25,5 +27,14 @@ public class ScheduleController {
                 scheduleService.save(requestDto.getPlanTitle(), requestDto.getPlanContents(), requestDto.getUserName());
         return new ResponseEntity<>(scheduleResponseDto,HttpStatus.CREATED);
 
+    }
+
+    //전체조회
+    @GetMapping
+    public ResponseEntity<List<ScheduleResponseDto>> findAll(){
+
+        List<ScheduleResponseDto> scheduleResponseDtoList = scheduleService.findAll();
+
+        return new ResponseEntity<>(scheduleResponseDtoList,HttpStatus.OK);
     }
 }

@@ -1,5 +1,6 @@
 package com.example.schedule.dto;
 
+import com.example.schedule.entity.Schedule;
 import lombok.Getter;
 
 @Getter
@@ -15,5 +16,9 @@ public class ScheduleResponseDto {
         this.planId = planId;
         this.planTitle = planTitle;
         this.planContents = planContents;
+    }
+
+    public static ScheduleResponseDto toDto(Schedule schedule){
+        return new ScheduleResponseDto(schedule.getPlanId(), schedule.getPlanTitle(), schedule.getPlanContents());
     }
 }
