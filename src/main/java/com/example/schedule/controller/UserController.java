@@ -1,10 +1,7 @@
 package com.example.schedule.controller;
 
 
-import com.example.schedule.dto.SignUpRequestDto;
-import com.example.schedule.dto.SignUpResponseDto;
-import com.example.schedule.dto.UserListResponseDto;
-import com.example.schedule.dto.UserResponseDto;
+import com.example.schedule.dto.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -43,6 +40,18 @@ public class UserController {
         UserResponseDto userResponseDto = userService.findById(userId);
 
         return new ResponseEntity<>(userResponseDto,HttpStatus.OK);
+    }
+
+    //수정
+    @PutMapping("/{userId}")
+    public ResponseEntity<Void> updateUser(
+            @PathVariable Long userId,
+            @RequestBody UpdateRequestDto dto
+            ) {
+        userService.updateUser(userId,
+                dto.getOldPasswqrd(),dto.getNewPassword());
+
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 
 }
