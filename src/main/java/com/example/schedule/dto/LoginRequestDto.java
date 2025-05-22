@@ -12,7 +12,7 @@ import lombok.Getter;
 public class LoginRequestDto {
 
     @NotBlank
-    private final String userEamil;
+    private final String userEmail;
 
     @NotNull
     private final String password;

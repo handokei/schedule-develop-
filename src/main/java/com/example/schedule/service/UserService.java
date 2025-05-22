@@ -1,6 +1,7 @@
 package com.example.schedule.service;
 
 
+import com.example.schedule.dto.LoginResponseDto;
 import com.example.schedule.dto.SignUpResponseDto;
 import com.example.schedule.dto.UserListResponseDto;
 import com.example.schedule.dto.UserResponseDto;
@@ -25,6 +26,18 @@ public class UserService {
         User user = new User(userName, password, userEmail);
         User savedUser = userRepository.save(user);
         return new SignUpResponseDto(savedUser.getUserId(),savedUser.getUserName(),savedUser.getUserEmail());
+    }
+
+    public LoginResponseDto login(String userEmail,String password) {
+        User user = userRepository.findUserByUserEmail(userEmail).orElseThrow(() -> new ResponseStatusException(HttpStatus.UNAUTHORIZED));
+
+        if (user.getPassword().equals(password)) {
+            throw new ResponseStatusException(HttpStatus.UNAUTHORIZED);
+        }
+
+        return new LoginResponseDto(user.getUserId());
+
+
     }
 
     public UserResponseDto findById(Long userId) {
@@ -64,8 +77,5 @@ public class UserService {
         userRepository.delete(findUser);
     }
 
-    public void login(String userEmail,String password) {
-        User user = userRepository.findUserByUserNameOrElseThrow(userEmail);
 
-    }
 }

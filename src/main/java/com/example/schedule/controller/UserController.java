@@ -4,6 +4,7 @@ package com.example.schedule.controller;
 import com.example.schedule.commom.Const;
 import com.example.schedule.dto.*;
 import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -35,29 +36,30 @@ public class UserController {
 
     }
 
-
     //로그인
-//    @PostMapping("/login")
-//    public ResponseEntity<Void> userLogin(
-//            @Valid
-//            @RequestBody LoginRequestDto dto
-//    ) {
-//        Long userId = responseDto.getUserId();
-//
-//       // 실패 시 예외처리
-//        if (userId == null) {
-//            return "/users";
-//        }
-//
-//        HttpSession session = request.getSession();
-//
-//        //회원 정보 조회
-//        UserResponseDto loginUser = userService.findById(userId);
-//
-//        //회원 정보 저장
-//        session.setAttribute(Const.LOGIN_USER,loginUser);
-//    }
+    @PostMapping("/login")
+    public ResponseEntity<LoginResponseDto> userLogin(
+            @Valid
+            @RequestBody LoginRequestDto dto,
+            HttpServletRequest request
+    ) {
+        LoginResponseDto loginResponseDto = userService.login(dto.getUserEmail(), dto.getPassword());
 
+        HttpSession session = request.getSession();
+        session.getAttribute(Const.LOGIN_USER);
+
+        return new ResponseEntity<>(loginResponseDto,HttpStatus.OK);
+    }
+
+//    public String userLogin(
+//            @Valid
+//            @RequestBody LoginRequestDto dto,
+//            HttpServletRequest request
+//    ) {
+//        LoginResponseDto loginUser = userService.login(dto.getUserEamil(), dto.getPassword());
+//        //리아이렉트 다시 처음 화면으로
+//        return "redirect:/users";
+//    }
     //전체조회
     @GetMapping
     public ResponseEntity<List<UserListResponseDto>> findAll() {
