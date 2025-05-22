@@ -44,22 +44,14 @@ public class UserController {
             HttpServletRequest request
     ) {
         LoginResponseDto loginResponseDto = userService.login(dto.getUserEmail(), dto.getPassword());
-
+        //세션 가져오기
         HttpSession session = request.getSession();
-        session.getAttribute(Const.LOGIN_USER);
+        //세션 저장하기
+        session.setAttribute(Const.LOGIN_USER,loginResponseDto);
 
         return new ResponseEntity<>(loginResponseDto,HttpStatus.OK);
     }
 
-//    public String userLogin(
-//            @Valid
-//            @RequestBody LoginRequestDto dto,
-//            HttpServletRequest request
-//    ) {
-//        LoginResponseDto loginUser = userService.login(dto.getUserEamil(), dto.getPassword());
-//        //리아이렉트 다시 처음 화면으로
-//        return "redirect:/users";
-//    }
     //전체조회
     @GetMapping
     public ResponseEntity<List<UserListResponseDto>> findAll() {

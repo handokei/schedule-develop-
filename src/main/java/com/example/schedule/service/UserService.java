@@ -29,8 +29,10 @@ public class UserService {
     }
 
     public LoginResponseDto login(String userEmail,String password) {
+        //이메일 불일치시, 401 에러
         User user = userRepository.findUserByUserEmail(userEmail).orElseThrow(() -> new ResponseStatusException(HttpStatus.UNAUTHORIZED));
 
+        //비밀번호 불일치시, 401에러
         if (user.getPassword().equals(password)) {
             throw new ResponseStatusException(HttpStatus.UNAUTHORIZED);
         }
