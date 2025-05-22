@@ -33,7 +33,7 @@ public class UserService {
         User user = userRepository.findUserByUserEmail(userEmail).orElseThrow(() -> new ResponseStatusException(HttpStatus.UNAUTHORIZED));
 
         //비밀번호 불일치시, 401에러
-        if (user.getPassword().equals(password)) {
+        if (!user.getPassword().equals(password)) {
             throw new ResponseStatusException(HttpStatus.UNAUTHORIZED);
         }
 

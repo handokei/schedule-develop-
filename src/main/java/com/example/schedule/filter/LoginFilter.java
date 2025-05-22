@@ -1,5 +1,6 @@
 package com.example.schedule.filter;
 
+import com.example.schedule.commom.Const;
 import jakarta.servlet.*;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -35,7 +36,7 @@ public class LoginFilter implements Filter {
 
             HttpSession session = httpRequest.getSession(false);
 
-            if (session == null || session.getAttribute("sessionKey") == null) {
+            if (session == null || session.getAttribute(Const.LOGIN_USER) == null) {
                 throw new ResponseStatusException(HttpStatus.UNAUTHORIZED);
             }
 
