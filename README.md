@@ -3,7 +3,7 @@
 <img width="852" alt="README1" src="https://github.com/user-attachments/assets/e2004bd2-46b7-4a22-99f0-caef686b7600" />
 <img width="804" alt="README2" src="https://github.com/user-attachments/assets/c69e732e-3726-4dab-b92b-866ee3f4c46a" />
 
-# 📅 Schedule Management App
+# 📅 일정관리 App(Develop)
 
 Spring Boot 기반의 일정 관리 및 회원 인증 애플리케이션입니다. 세션을 활용한 로그인, 유저 CRUD, 일정 생성 등의 기능을 제공합니다.
 
@@ -42,16 +42,4 @@ com.example.schedule
 - 401: 인증 실패 (이메일/비밀번호 불일치)
 - 400: 입력값 검증 실패 (@Valid + @NotBlank 등)
 
-## 📎 설정
 
-### application.yml (예시)
-```yaml
-spring:
-  datasource:
-    url: jdbc:mysql://localhost:3306/schedule_db
-    username: root
-    password: your_password
-  jpa:
-    hibernate:
-      ddl-auto: update
-    show-sql: true
