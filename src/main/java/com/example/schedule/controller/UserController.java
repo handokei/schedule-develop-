@@ -4,7 +4,6 @@ package com.example.schedule.controller;
 import com.example.schedule.commom.Const;
 import com.example.schedule.dto.*;
 import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -51,6 +50,7 @@ public class UserController {
 
         return new ResponseEntity<>(loginResponseDto,HttpStatus.OK);
     }
+
 
     //전체조회
     @GetMapping

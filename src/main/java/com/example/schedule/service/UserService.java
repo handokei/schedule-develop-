@@ -46,7 +46,7 @@ public class UserService {
     public UserResponseDto findById(Long userId) {
         Optional<User> optionalUser = userRepository.findById(userId);
 
-        //NPE방지
+        //NPE방지 11 112 2112 12212112
         if (optionalUser.isEmpty()) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND);
         }

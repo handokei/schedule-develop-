@@ -8,12 +8,12 @@ import org.hibernate.validator.constraints.Range;
 public class SignUpRequestDto {
 
     @NotBlank
-    @Range(min = 2, max =8)
+    @Size(min = 2, max =8)
     @Pattern(regexp = "^[가-힣]*$",
             message = "이름은 한글 2~8자여야 합니다.")
     private final String userName;
     @NotNull
-    @Range(min = 4, max =120)
+    @Size(min = 4, max =120)
     @Pattern(regexp = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&#])[A-Za-z\\d@$!%*?&#]{8,}$",
             message = "비밀번호 형식이 올바르지 않습니다. 4자 이상, 대소문자 포함, 숫자 및 특수문자(@$!%*?&#) 포함")
     private final String password;
