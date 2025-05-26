@@ -68,23 +68,12 @@ src/main/resources/
 - 400: 입력값 검증 실패 (@Valid + @NotBlank 등)
 
 
- 📎 기타 알아두면 좋은 점
+## 🚀 사용 방법
 Validation 강력 적용
 
 @NotBlank, @Size, @Pattern 등으로 필드 검증
 
 예: 비밀번호는 대소문자, 숫자, 특수문자 포함
 
-예외 처리
-
-@Valid + Spring의 MethodArgumentNotValidException 자동 핸들링
-
-로그인 실패 시 401 Unauthorized 반환
-
-세션 인증 설계
-
-로그인 성공 시 HttpSession에 로그인 사용자 저장
-
-커스텀 필터로 비로그인 사용자 차단
 
 
