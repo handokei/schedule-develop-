@@ -9,19 +9,44 @@ Spring Boot 기반의 일정 관리 및 회원 인증 애플리케이션입니�
 
 ## 📁 프로젝트 구조
 
-com.example.schedule
-├── commom # 상수 정의
-├── config # 필터 등록 등 Spring 설정
-├── controller # REST API 컨트롤러
-├── dto # 요청/응답 DTO 객체
-├── entity # JPA 엔티티 클래스
-├── filter # 인증 필터 
-├── repository # JPA 레포지토리
-├── service # 비즈니스 로직 계층
-└── ScheduleApplication # 메인 애플리케이션
+src/main/java/com/example/schedule/
+├── common/                # 상수(Const) 정의
+├── config/                # 필터 등록 관련 설정
+├── controller/            # REST API 컨트롤러
+├── dto/                   # 요청/응답용 DTO
+├── entity/                # JPA 엔티티 정의
+├── filter/                # 로그인 필터
+├── repository/            # JPA 리포지토리
+└── service/               # 비즈니스 로직 처리
+
+src/main/resources/
+├── application.yml        # DB 및 기타 설정
+└── static/                # 정적 자원 (미사용 시 비어있을 수 있음)
 
 
-## 🚀 주요 기능
+
+## 🚀 제공 기능
+사용자 관련
+회원가입 (/users/signup)
+
+로그인 및 세션 저장 (/users/login)
+
+사용자 전체 조회 / 단일 조회
+
+비밀번호 수정 / 계정 삭제
+
+✅ 일정 관련
+일정 생성
+
+일정 조회 (단일/전체)
+
+일정 수정 / 삭제
+(해당 기능은 schedule 엔티티 기준으로 구현)
+
+✅ 인증
+로그인 시 HttpSession 기반 인증 처리
+
+인증 필요 API는 커스텀 필터(LoginFilter)를 통해 제어
 
 ### 🔐 사용자 인증
 - 회원가입 (`POST /users/signup`)
@@ -41,5 +66,25 @@ com.example.schedule
 ## ✅ 예외 처리
 - 401: 인증 실패 (이메일/비밀번호 불일치)
 - 400: 입력값 검증 실패 (@Valid + @NotBlank 등)
+
+
+ 📎 기타 알아두면 좋은 점
+Validation 강력 적용
+
+@NotBlank, @Size, @Pattern 등으로 필드 검증
+
+예: 비밀번호는 대소문자, 숫자, 특수문자 포함
+
+예외 처리
+
+@Valid + Spring의 MethodArgumentNotValidException 자동 핸들링
+
+로그인 실패 시 401 Unauthorized 반환
+
+세션 인증 설계
+
+로그인 성공 시 HttpSession에 로그인 사용자 저장
+
+커스텀 필터로 비로그인 사용자 차단
 
 
